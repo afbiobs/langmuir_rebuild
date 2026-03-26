@@ -1,0 +1,140 @@
+{
+  "decision_gate": {
+    "provisional": false,
+    "forcing_mode": "era5_cache_matched",
+    "can_advance_to_wp06": false,
+    "question_1_cl_vs_scaling": {
+      "status": "fail",
+      "answer": "No",
+      "basis": "CL does not clearly beat the scaling candidate once fit and structural checks are considered together.",
+      "metrics": {
+        "cl_rmse_m": 159.87785624814757,
+        "scaling_rmse_m": 126.02382044543845,
+        "cl_attractor_pass": true,
+        "scaling_attractor_pass": true
+      }
+    },
+    "question_2_both_beat_baselines": {
+      "status": "fail",
+      "answer": "No",
+      "basis": "At least one baseline still fits the full dataset better than both candidates.",
+      "metrics": {
+        "cl_rmse_m": 159.87785624814757,
+        "scaling_rmse_m": 126.02382044543845,
+        "best_baseline_rmse_m": 83.81169296888305
+      }
+    },
+    "question_3_both_pass_attractor": {
+      "status": "pass",
+      "answer": "Yes",
+      "basis": "Both candidates avoid the attractor failure mode on the full dataset.",
+      "metrics": {
+        "cl_attractor_pass": true,
+        "scaling_attractor_pass": true,
+        "cl_attractor_max_fraction": 0.47761194029850745,
+        "scaling_attractor_max_fraction": 0.373134328358209
+      }
+    },
+    "question_4_enhancement_sensible": {
+      "status": "uncertain",
+      "answer": "Provisionally yes",
+      "basis": "The enhancement ratios remain positive and interpretable, but the comparison still uses default environmental inputs and simplified site metadata.",
+      "metrics": {
+        "mean_light_ratio": 0.8550906412441883,
+        "mean_nutrient_ratio": 18.388637421417307,
+        "mean_temperature_ratio": 0.75
+      }
+    },
+    "question_5_development_index_correlation": {
+      "status": "blocked",
+      "answer": "Cannot assess",
+      "basis": "The repository contains spacing observations only. There is no bloom-condition target with which to test development-index correlation."
+    }
+  },
+  "candidate_summaries": {
+    "cl": {
+      "subset_id": "BM-A_full",
+      "model": "cl",
+      "model_type": "candidate",
+      "n_cases": 67,
+      "rmse_m": 159.87785624814757,
+      "mae_m": 130.75465149146373,
+      "rmse_ratio_pct": 282.07911168627066,
+      "mae_ratio_pct": 194.29029629411824,
+      "bias_m": 49.748719134043725,
+      "pearson_r": -0.31679351614813533,
+      "spearman_rho": -0.46410184815663974,
+      "hit_rate_30pct": 0.11940298507462686,
+      "tail_coverage_low": 0.04,
+      "tail_coverage_high": 0.1111111111111111,
+      "tail_coverage_overall": 0.06976744186046512,
+      "dynamic_range_p90_p10": 5.040509618938906,
+      "range_coverage_fraction": 0.9734891975417614,
+      "dynamic_range_pass": true,
+      "attractor_pass": true,
+      "attractor_max_fraction": 0.47761194029850745,
+      "attractor_message": "OK: max fraction in any 20% band = 47.76%",
+      "cap_binding_rate": 1.0,
+      "visible_fraction": 0.7910447761194029,
+      "mean_development_index": 1.59678487586067,
+      "median_development_index": 1.8475509947602056,
+      "mean_light_ratio": 0.8550906412441883,
+      "mean_nutrient_ratio": 18.388637421417307,
+      "mean_temperature_ratio": 0.75
+    },
+    "scaling": {
+      "subset_id": "BM-A_full",
+      "model": "scaling",
+      "model_type": "candidate",
+      "n_cases": 67,
+      "rmse_m": 126.02382044543845,
+      "mae_m": 86.92885447994898,
+      "rmse_ratio_pct": 79.74469666523072,
+      "mae_ratio_pct": 74.30986489423913,
+      "bias_m": -68.27541422318693,
+      "pearson_r": -0.296652485775721,
+      "spearman_rho": -0.49207806241047103,
+      "hit_rate_30pct": 0.11940298507462686,
+      "tail_coverage_low": 0.08,
+      "tail_coverage_high": 0.0,
+      "tail_coverage_overall": 0.046511627906976744,
+      "dynamic_range_p90_p10": 22.16649854919799,
+      "range_coverage_fraction": 0.18010684948202443,
+      "dynamic_range_pass": false,
+      "attractor_pass": true,
+      "attractor_max_fraction": 0.373134328358209,
+      "attractor_message": "OK: max fraction in any 20% band = 37.31%",
+      "cap_binding_rate": 0.7910447761194029,
+      "visible_fraction": 0.7910447761194029,
+      "mean_development_index": 1.59678487586067,
+      "median_development_index": 1.8475509947602056,
+      "mean_light_ratio": 0.8550906412441883,
+      "mean_nutrient_ratio": 18.388637421417307,
+      "mean_temperature_ratio": 0.75
+    }
+  },
+  "baseline_coefficients": {
+    "baseline_constant": {
+      "mean_spacing_m": 108.39475093432837
+    },
+    "baseline_linear_wind": {
+      "intercept_m": 190.98795362226863,
+      "slope_m_per_ms": -23.210068702675944
+    },
+    "baseline_depth_scaled": {
+      "intercept_m": 196.9948774956481,
+      "slope_wind_m_per_ms": -20.57309949666812,
+      "slope_depth_m_per_m": -2.9546421135037377
+    }
+  },
+  "scenario": {
+    "onset_only": false,
+    "visible_spacing_multiplier": 1.0,
+    "max_visible_mergers": 3,
+    "max_visible_aspect_ratio": 300.0,
+    "max_cell_aspect_ratio": 12.0,
+    "drag_method": "coare35",
+    "drift_method": "webb_fox_kemper",
+    "lookback_hours": 6.0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/op/PROJECTS/lang-nonlin/**)",
+      "Read(//home/op/PROJECTS/lang-nonlin/langmuir/**)",
+      "Bash(head -5 /home/op/PROJECTS/lang-nonlin/data/*.csv)",
+      "Bash(cp /home/op/PROJECTS/lang-nonlin/data/observations_minimal.csv /home/op/PROJECTS/langmuir_rebuild/data/raw/observations.csv)",
+      "Bash(ln -s /home/op/PROJECTS/lang-nonlin/data/era5_cache /home/op/PROJECTS/langmuir_rebuild/data/raw/era5_cache)",
+      "Bash(python -m pytest src/forcing/tests/test_forcing.py -v --tb=short)",
+      "Bash(python:*)",
+      "Bash(python3:*)"
+    ]
+  }
+}

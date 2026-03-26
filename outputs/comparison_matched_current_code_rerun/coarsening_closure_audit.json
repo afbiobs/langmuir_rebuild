@@ -1,0 +1,131 @@
+{
+  "models": {
+    "cl": {
+      "n_cases": 67,
+      "forcing_nu_T_m2_s": {
+        "count": 67,
+        "min": 0.0001526277868872765,
+        "p10": 0.00034410327110076636,
+        "median": 0.0010500865130519325,
+        "p90": 0.00475131523670875,
+        "max": 0.007598079812563413
+      },
+      "coarsening_diffusivity_m2_s": {
+        "count": 67,
+        "min": 0.0022336337725510115,
+        "p10": 0.005035784788936233,
+        "median": 0.015367507761777376,
+        "p90": 0.06953319833292801,
+        "max": 0.11119421975510857
+      },
+      "coarsening_anisotropy_ratio": {
+        "count": 67,
+        "min": 14.634515890613448,
+        "p10": 14.63451589061345,
+        "median": 14.634515890613454,
+        "p90": 14.634515890613455,
+        "max": 14.634515890613457
+      },
+      "tau_coarsening_s": {
+        "count": 67,
+        "min": 997.717869913728,
+        "p10": 1962.7519207290406,
+        "median": 5897.2723118863005,
+        "p90": 15514.341149240725,
+        "max": 30433.47615023182
+      },
+      "tau_coarsening_h": {
+        "count": 67,
+        "min": 0.2771438527538133,
+        "p10": 0.5452088668691779,
+        "median": 1.6381311977461945,
+        "p90": 4.309539208122423,
+        "max": 8.453743375064395
+      },
+      "pattern_lifetime_h": {
+        "count": 67,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 5.5,
+        "p90": 5.5,
+        "max": 5.5
+      },
+      "tau_initial_le_lifetime_cases": 52,
+      "n_events_counts": {
+        "0": 15,
+        "1": 31,
+        "2": 21
+      },
+      "visible_limited_cases": 0,
+      "methods": [
+        "mixing_length_lateral"
+      ]
+    },
+    "scaling": {
+      "n_cases": 67,
+      "forcing_nu_T_m2_s": {
+        "count": 67,
+        "min": 0.0001526277868872765,
+        "p10": 0.00034410327110076636,
+        "median": 0.0010500865130519325,
+        "p90": 0.00475131523670875,
+        "max": 0.007598079812563413
+      },
+      "coarsening_diffusivity_m2_s": {
+        "count": 67,
+        "min": 0.0022336337725510115,
+        "p10": 0.005035784788936233,
+        "median": 0.015367507761777376,
+        "p90": 0.06953319833292801,
+        "max": 0.11119421975510857
+      },
+      "coarsening_anisotropy_ratio": {
+        "count": 67,
+        "min": 14.634515890613448,
+        "p10": 14.63451589061345,
+        "median": 14.634515890613454,
+        "p90": 14.634515890613455,
+        "max": 14.634515890613457
+      },
+      "tau_coarsening_s": {
+        "count": 67,
+        "min": 8.07484490865472,
+        "p10": 13.225677755503664,
+        "median": 36.26883707873966,
+        "p90": 81.57503968527286,
+        "max": 144.70665098091857
+      },
+      "tau_coarsening_h": {
+        "count": 67,
+        "min": 0.0022430124746263113,
+        "p10": 0.0036737993765287957,
+        "median": 0.010074676966316571,
+        "p90": 0.022659733245909128,
+        "max": 0.04019629193914405
+      },
+      "pattern_lifetime_h": {
+        "count": 67,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 5.5,
+        "p90": 5.5,
+        "max": 5.5
+      },
+      "tau_initial_le_lifetime_cases": 53,
+      "n_events_counts": {
+        "0": 14,
+        "4": 15,
+        "5": 31,
+        "6": 7
+      },
+      "visible_limited_cases": 53,
+      "methods": [
+        "mixing_length_lateral"
+      ]
+    }
+  },
+  "notes": [
+    "forcing_nu_T_m2_s is the depth-averaged vertical eddy viscosity from the forcing layer.",
+    "coarsening_diffusivity_m2_s is the lateral diffusivity used by the merger clock."
+  ]
+}

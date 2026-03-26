@@ -1,0 +1,17 @@
+annotation_category,closest_layer,count
+all,L_inst,2
+all,coarsened_width,0
+all,mechanical_cell_width,52
+all,comparison_spacing,0
+manual,L_inst,0
+manual,coarsened_width,0
+manual,mechanical_cell_width,33
+manual,comparison_spacing,0
+stream,L_inst,0
+stream,coarsened_width,0
+stream,mechanical_cell_width,18
+stream,comparison_spacing,0
+wiggle,L_inst,2
+wiggle,coarsened_width,0
+wiggle,mechanical_cell_width,1
+wiggle,comparison_spacing,0

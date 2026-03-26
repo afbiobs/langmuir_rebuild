@@ -1,0 +1,140 @@
+{
+  "decision_gate": {
+    "provisional": true,
+    "forcing_mode": "provisional_site_proxy",
+    "can_advance_to_wp06": false,
+    "question_1_cl_vs_scaling": {
+      "status": "pass",
+      "answer": "Yes",
+      "basis": "CL leads the scaling candidate on fit without a worse structural check.",
+      "metrics": {
+        "cl_rmse_m": 129.86807278036366,
+        "scaling_rmse_m": 131.9302469616338,
+        "cl_mae_m": 88.43009386089649,
+        "scaling_mae_m": 93.20942506621701
+      }
+    },
+    "question_2_both_beat_baselines": {
+      "status": "fail",
+      "answer": "No",
+      "basis": "At least one baseline still fits the full dataset better than both candidates.",
+      "metrics": {
+        "cl_rmse_m": 129.86807278036366,
+        "scaling_rmse_m": 131.9302469616338,
+        "best_baseline_rmse_m": 87.60546008761555
+      }
+    },
+    "question_3_both_pass_attractor": {
+      "status": "pass",
+      "answer": "Yes",
+      "basis": "Both candidates avoid the attractor failure mode on the full dataset.",
+      "metrics": {
+        "cl_attractor_pass": true,
+        "scaling_attractor_pass": true,
+        "cl_attractor_max_fraction": 0.0,
+        "scaling_attractor_max_fraction": 0.0
+      }
+    },
+    "question_4_enhancement_sensible": {
+      "status": "uncertain",
+      "answer": "Provisionally yes",
+      "basis": "The enhancement ratios remain positive and interpretable, but the comparison still uses default environmental inputs and simplified site metadata.",
+      "metrics": {
+        "mean_light_ratio": 0.8550906412441883,
+        "mean_nutrient_ratio": 28.54699145341531,
+        "mean_temperature_ratio": 0.75
+      }
+    },
+    "question_5_development_index_correlation": {
+      "status": "blocked",
+      "answer": "Cannot assess",
+      "basis": "The repository contains spacing observations only. There is no bloom-condition target with which to test development-index correlation."
+    }
+  },
+  "candidate_summaries": {
+    "cl": {
+      "subset_id": "BM-A_full",
+      "model": "cl",
+      "model_type": "candidate",
+      "n_cases": 67,
+      "rmse_m": 129.86807278036366,
+      "mae_m": 88.43009386089649,
+      "rmse_ratio_pct": 73.44585337795844,
+      "mae_ratio_pct": 68.44003203245764,
+      "bias_m": -88.43009386089649,
+      "pearson_r": -0.2987857940252195,
+      "spearman_rho": -0.4566627490990668,
+      "hit_rate_30pct": 0.11940298507462686,
+      "tail_coverage_low": 0.32,
+      "tail_coverage_high": 0.0,
+      "tail_coverage_overall": 0.18604651162790697,
+      "dynamic_range_p90_p10": 2.798701037701902,
+      "range_coverage_fraction": 0.05821827158414263,
+      "dynamic_range_pass": false,
+      "attractor_pass": true,
+      "attractor_max_fraction": 0.0,
+      "attractor_message": "OK: max fraction in any 20% band = 0.00%",
+      "cap_binding_rate": 0.0,
+      "visible_fraction": 1.0,
+      "mean_development_index": 1.1256050361637273,
+      "median_development_index": 1.0478327527465154,
+      "mean_light_ratio": 0.8550906412441883,
+      "mean_nutrient_ratio": 28.546991453415316,
+      "mean_temperature_ratio": 0.75
+    },
+    "scaling": {
+      "subset_id": "BM-A_full",
+      "model": "scaling",
+      "model_type": "candidate",
+      "n_cases": 67,
+      "rmse_m": 131.9302469616338,
+      "mae_m": 93.20942506621701,
+      "rmse_ratio_pct": 78.5892128665751,
+      "mae_ratio_pct": 76.72804722766409,
+      "bias_m": -93.20942506621701,
+      "pearson_r": -0.307030034934498,
+      "spearman_rho": -0.5134212867460272,
+      "hit_rate_30pct": 0.0,
+      "tail_coverage_low": 0.0,
+      "tail_coverage_high": 0.0,
+      "tail_coverage_overall": 0.0,
+      "dynamic_range_p90_p10": 2.5987442910880194,
+      "range_coverage_fraction": 0.02836623379342144,
+      "dynamic_range_pass": false,
+      "attractor_pass": true,
+      "attractor_max_fraction": 0.0,
+      "attractor_message": "OK: max fraction in any 20% band = 0.00%",
+      "cap_binding_rate": 0.0,
+      "visible_fraction": 1.0,
+      "mean_development_index": 1.1256050361637273,
+      "median_development_index": 1.0478327527465154,
+      "mean_light_ratio": 0.8550906412441883,
+      "mean_nutrient_ratio": 28.546991453415316,
+      "mean_temperature_ratio": 0.75
+    }
+  },
+  "baseline_coefficients": {
+    "baseline_constant": {
+      "mean_spacing_m": 108.39475093432837
+    },
+    "baseline_linear_wind": {
+      "intercept_m": 222.38993856732841,
+      "slope_m_per_ms": -22.329876291607174
+    },
+    "baseline_depth_scaled": {
+      "intercept_m": 208.96244790607747,
+      "slope_wind_m_per_ms": -17.312518834862892,
+      "slope_depth_m_per_m": -2.3395059727351804
+    }
+  },
+  "scenario": {
+    "onset_only": false,
+    "visible_spacing_multiplier": 1.0,
+    "max_visible_mergers": 3,
+    "max_visible_aspect_ratio": 300.0,
+    "max_cell_aspect_ratio": 12.0,
+    "drag_method": "coare35",
+    "drift_method": "webb_fox_kemper",
+    "lookback_hours": 6.0
+  }
+}

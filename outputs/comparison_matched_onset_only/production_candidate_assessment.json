@@ -1,0 +1,68 @@
+{
+  "production_candidate_assessment": {
+    "subset_id": "BM-A_full",
+    "forcing_mode": "era5_cache_matched",
+    "provisional": false,
+    "leading_candidate": "cl",
+    "selected_candidate": null,
+    "promotable": false,
+    "promotion_blocker": "No single physics candidate beats the other candidate and all baselines on BM-A_full across RMSE, range coverage, and overall tail coverage.",
+    "candidate_assessments": {
+      "cl": {
+        "qualifies": false,
+        "requirements": {
+          "beats_other_candidate_rmse": true,
+          "beats_other_candidate_range_coverage": true,
+          "beats_other_candidate_tail_coverage": true,
+          "beats_all_baselines_rmse": false,
+          "beats_all_baselines_range_coverage": false,
+          "beats_all_baselines_tail_coverage": false
+        },
+        "metrics": {
+          "rmse_m": 117.08930359403956,
+          "range_coverage_fraction": 0.24776665035186216,
+          "tail_coverage_overall": 0.11627906976744186,
+          "dynamic_range_p90_p10": 5.221280217031718,
+          "attractor_pass": false
+        }
+      },
+      "scaling": {
+        "qualifies": false,
+        "requirements": {
+          "beats_other_candidate_rmse": false,
+          "beats_other_candidate_range_coverage": false,
+          "beats_other_candidate_tail_coverage": true,
+          "beats_all_baselines_rmse": false,
+          "beats_all_baselines_range_coverage": false,
+          "beats_all_baselines_tail_coverage": false
+        },
+        "metrics": {
+          "rmse_m": 129.2727458617919,
+          "range_coverage_fraction": 0.1801912684523032,
+          "tail_coverage_overall": 0.11627906976744186,
+          "dynamic_range_p90_p10": 39.64292115247748,
+          "attractor_pass": true
+        }
+      }
+    },
+    "notes": [
+      "AR-030 remains explicit: the shallow-lake onset path uses S = 0.",
+      "Missing stratification physics is a flagged uncertainty, not a WP-06 blocker.",
+      "This run uses ERA5 cache-matched forcing and is eligible for production promotion if a single candidate clears the WP-06 bar."
+    ]
+  },
+  "production_reproducibility": {
+    "status": "skipped",
+    "candidate": null,
+    "reason": "No single physics candidate beats the other candidate and all baselines on BM-A_full across RMSE, range coverage, and overall tail coverage."
+  },
+  "assumptions": {
+    "shallow_lake_stratification": {
+      "assumption_id": "AR-030",
+      "model_parameter": "S = 0",
+      "status": "Uncertain",
+      "statement": "Operational shallow-lake onset runs use the unstratified limit S = 0.",
+      "wp06_treatment": "Flagged uncertainty only. Stratification is not treated as a WP-06 blocker and no ad hoc correction is applied."
+    }
+  }
+}

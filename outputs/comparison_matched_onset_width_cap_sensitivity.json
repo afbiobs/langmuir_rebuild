@@ -1,0 +1,9 @@
+{
+  "cap12_output_dir": "outputs/comparison_matched_onset_width_cap12",
+  "cap300_output_dir": "outputs/comparison_matched_onset_width_cap300",
+  "changed_cl_mechanical_cell_width_cases": 67,
+  "changed_cl_cap_binding_cases": 67,
+  "changed_cl_comparison_prediction_cases": 0,
+  "changed_metric_rows": 0,
+  "conclusion": "Relaxing max_cell_aspect_ratio from 12 to 300 changes CL mechanical cell-width diagnostics, but not the scored WP-06 comparison outputs under the current bounded visible hierarchy."
+}
