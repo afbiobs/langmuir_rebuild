@@ -44,6 +44,78 @@ development focus is the spacing pipeline and its comparison to observations.
    - wiggle-only cross-lake audit: `outputs/rank_audit/wiggle_crosslake_audit.py`
 4. Check the layer-by-layer outputs before changing model code.
 
+## How to run the analyses
+
+### Unit tests
+
+Run all unit tests from the repo root:
+
+```bash
+python3 -m pytest src/ -v
+```
+
+Run only the multiscale tests:
+
+```bash
+python3 -m pytest src/hydro/tests/test_multiscale_structures.py src/prediction/tests/test_candidate_multiscale.py -v
+```
+
+Run only the CL candidate and pipeline tests:
+
+```bash
+python3 -m pytest src/prediction/tests/test_pipeline.py src/prediction/tests/test_diagnostics.py -v
+```
+
+Run forcing and hydro support tests:
+
+```bash
+python3 -m pytest src/forcing/tests/test_forcing.py src/hydro/tests/test_support_modules.py src/hydro/tests/test_literature_values.py -v
+```
+
+### Audit scripts
+
+All audit scripts are run from the repo root with `python3`:
+
+```bash
+# 1. Rebuild grouped observation inputs (required before audits)
+python3 outputs/rank_audit/rebuild_point_summary_enriched.py
+
+# 2. Fill the ERA5 weather cache (requires network; only needed once per new observation set)
+python3 -m src.data.era5_cache
+
+# 3a. Neagh grouped-point audit (primary Neagh diagnostic)
+python3 outputs/rank_audit/neagh_grouped_category_audit.py
+
+# 3b. Wiggle-only cross-lake audit
+python3 outputs/rank_audit/wiggle_crosslake_audit.py
+```
+
+To run the multiscale candidate instead of the CL candidate in audit scripts,
+pass `candidate="multiscale"` to `analyse_case()` in the pipeline. The pipeline
+entry point (`src/prediction/pipeline.py`) accepts `candidate="cl"`,
+`candidate="scaling"`, or `candidate="multiscale"`.
+
+### Analyses that may now be redundant
+
+With the addition of the multiscale candidate (`candidate_multiscale.py`), the
+following analyses may be partially redundant or superseded:
+
+- **`outputs/rank_audit/neagh_fetch_convention_sensitivity.py`** — resolved the
+  fetch-convention question; results are archived and not needed for ongoing work.
+- **`outputs/rank_audit/rank_audit.py`** — the original single-class Neagh audit,
+  superseded by the grouped-point category audit
+  (`neagh_grouped_category_audit.py`).
+- **`outputs/rank_audit/neagh_directional_rerun.py`** — kept only because the
+  grouped audit imports helper functions from it. Should be refactored out.
+- **CL-candidate-only onset-spacing diagnostics** — the CL onset scale
+  (`L_inst = 2πh/l_cNL`) is now a diagnostic reference in the multiscale
+  candidate, not the primary prediction. Audits that compare observations
+  directly against the CL onset scale are still useful for wiggle-class
+  observations but are not the main prediction path for manual-class spacings.
+- **Old `outputs/comparison_matched_*` variant directories** — only
+  `outputs/comparison_matched_current_code_rerun/` is canonical. Earlier variant
+  runs are historical.
+
 ## Key files
 
 - `AGENTS.md`: coding rules for this project
