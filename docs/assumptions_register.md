@@ -972,6 +972,94 @@ mixing-length closure captures, the present `A_H` can still over-coarsen.
 
 ---
 
+## Multi-scale Structure Predictions
+
+### AR-036 — Wave-tied LC spacing coefficient C_wave = 0.34
+
+**Assumption:** The primary LC cell-pair width in fully developed Langmuir
+turbulence scales as d_LC = C_wave x lambda_p, where C_wave = 0.34 and
+lambda_p is the peak surface wave wavelength. This is the dominant spacing of
+counter-rotating LC vortex pairs driven by the CL-II instability mechanism.
+
+**Source:** Tsai & Lu (2023), *J. Fluid Mech.* 969, A30. DNS at Re_tau ~ 530
+gives d_s / lambda_wave ~ 0.34 (nondimensional wavenumber l_s ~ 2.9),
+consistent across wave steepness ak = 0.135 to 0.22.
+
+**Used in:** `src/hydro/multiscale_structures.py`,
+`src/prediction/candidate_multiscale.py`
+
+**Testable?** Yes. C_wave can be directly compared against the DNS result.
+The scaling d_LC ~ lambda_p can be tested via the dependence of predicted
+spacing on wind speed and fetch (which control lambda_p). If manual and
+stream observations vary as lambda_p, this assumption is supported.
+
+**Risk:** The coefficient was determined at laboratory-scale Re and for
+specific wave steepness values. At field-scale Re (O(10^6)) or in
+shallow-water conditions (k_p H < pi), the coefficient may differ. Treating
+C_wave as a constant may miss La_t-dependent or depth-dependent corrections.
+
+**Status:** Active.
+
+### AR-037 — Coarsening initialised from wave-tied scale d_LC, not CL onset L_inst
+
+**Assumption:** The multiscale candidate initialises the Y-junction merger
+clock from d_LC = C_wave x lambda_p rather than from L_inst = 2*pi*h / l_cNL.
+The physical rationale is that in the supercritical regime (Ra >> R_c), the
+CL instability sets the large-scale full-depth roll organization, but the
+primary visible LC convergence lines form at the wave-tied scale and coarsen
+through discrete mergers from that smaller initial width.
+
+**Source:** Tsai & Lu (2023) for the wave-tied scale; Xuan & Shen (2025),
+*J. Fluid Mech.* 1023, A4, resolvent analysis showing that in fully developed
+turbulence the CL instability scale represents the full-depth roll, while
+smaller structures coexist near the surface and set the visible convergence
+pattern.
+
+**Used in:** `src/prediction/candidate_multiscale.py`
+
+**Testable?** Yes. If coarsening from d_LC produces predictions in the right
+range (30-120 m for typical Neagh conditions) while coarsening from L_inst
+overshoots, this assumption is supported. The CL candidate (using L_inst) is
+preserved for direct A/B comparison.
+
+**Risk:** If d_LC is too small, the coarsening model must produce many
+mergers (5+) to reach observed scales, making predictions very sensitive to
+pattern_lifetime and A_H. If the merger timescale is wrong, predictions
+will cluster at the wrong scale.
+
+**Status:** Active.
+
+### AR-038 — CL onset scale represents full-depth roll organization
+
+**Assumption:** The CL instability onset width L_inst = 2*pi*h / l_cNL
+represents the wavelength of the full-depth counter-rotating roll structure,
+not the spacing of satellite-visible surface convergence lines. In the
+supercritical regime, L_inst is a real physical scale but is not directly
+comparable to manual or stream observation categories. It may correspond to
+the coarser spacing detected by wiggle spectral methods.
+
+**Source:** Xuan & Shen (2025), *J. Fluid Mech.* 1023, A4. Resolvent analysis
+shows that streamwise-invariant full-depth rolls (lambda_z ~ H to 2H) are the
+most amplified large-scale structures, while smaller near-surface structures
+have distinct (smaller) spanwise wavelengths.
+
+**Used in:** `src/prediction/candidate_multiscale.py` (as a diagnostic
+reference, not as the coarsening initial condition)
+
+**Testable?** Yes. If wiggle observations (median ~214 m) correlate better
+with L_inst than with the coarsened wave-tied scale, this interpretation is
+supported. Layer-by-layer Spearman rho analysis can test this per category.
+
+**Risk:** If the CL onset scale is not physically realized in the flow (i.e.
+the instability saturates at a different wavelength), retaining it as a
+diagnostic may be misleading. The nonlinear solver's l_cNL was validated
+against H&P (2017) benchmarks but not against field observations of full-depth
+roll spacing.
+
+**Status:** Active.
+
+---
+
 ## Superseded Entries
 
 - **AR-001** — Superseded by AR-028. The free-surface Robin parameter is no

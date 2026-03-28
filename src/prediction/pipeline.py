@@ -18,6 +18,7 @@ from src.hydro.coarsening import disruption_check
 from src.hydro.rayleigh import classify_regime
 from src.hydro.robin_bc import RobinBC
 from src.prediction.candidate_cl import analyse_candidate_cl
+from src.prediction.candidate_multiscale import analyse_candidate_multiscale
 from src.prediction.candidate_scaling import analyse_candidate_scaling
 from src.prediction.common import EnvironmentalContext, build_environmental_context
 
@@ -195,8 +196,10 @@ def analyse_case(
         Audit-friendly dict containing spacing, diagnostics, explanation, and
         the intermediate forcing/coarsening quantities.
     """
-    if candidate not in {"cl", "scaling"}:
-        raise ValueError(f"Unknown candidate '{candidate}'. Use 'cl' or 'scaling'.")
+    if candidate not in {"cl", "scaling", "multiscale"}:
+        raise ValueError(
+            f"Unknown candidate '{candidate}'. Use 'cl', 'scaling', or 'multiscale'."
+        )
     if depth <= 0.0:
         raise ValueError(f"depth must be positive, got {depth:.6g} m")
     if fetch <= 0.0:
@@ -246,6 +249,17 @@ def analyse_case(
             environmental=environmental_context,
             bc=bc,
             onset_only=onset_only,
+            visible_spacing_multiplier=visible_spacing_multiplier,
+            max_visible_mergers=max_visible_mergers,
+            max_visible_aspect_ratio=max_visible_aspect_ratio,
+            max_cell_aspect_ratio=max_cell_aspect_ratio,
+        )
+    elif candidate == "multiscale":
+        result = analyse_candidate_multiscale(
+            forcing=current_forcing,
+            pattern_lifetime=pattern_lifetime,
+            environmental=environmental_context,
+            bc=bc,
             visible_spacing_multiplier=visible_spacing_multiplier,
             max_visible_mergers=max_visible_mergers,
             max_visible_aspect_ratio=max_visible_aspect_ratio,

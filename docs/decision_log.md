@@ -1,5 +1,43 @@
 # Decision Log
 
+## 2026-03-28 — Add multiscale candidate with wave-tied LC initiation
+
+**Decision:** Add a new prediction candidate (`candidate="multiscale"`) that
+initialises coarsening from the wave-tied LC scale d_LC = 0.34 x lambda_p
+(Tsai & Lu 2023) instead of from the CL instability onset scale L_inst.
+The CL and scaling candidates are preserved unchanged.
+
+**Alternatives considered:**
+1. Modify the existing CL candidate to use d_LC as its initial width. Rejected
+   because this would make A/B comparison impossible and break the existing
+   audit trail.
+2. Add a category-dependent observation operator that selects different model
+   scales for manual vs wiggle observations. Rejected because the wave-tied
+   initiation with existing coarsening naturally produces different spacings
+   based on pattern_lifetime without needing to know the observation category.
+3. Adjust the CL solver's profile shapes or Robin BCs to produce smaller l_cNL
+   (and hence smaller L_inst). Rejected because the solver correctly reproduces
+   published H&P (2017) benchmarks; the issue is that L_inst represents the
+   full-depth roll, not the visible convergence-line spacing.
+
+**Rationale:** The CL onset scale L_inst ~ 196 m (aspect ratio ~22) at typical
+Neagh conditions is 3.9x larger than median manual observations (~43 m). Two
+recent papers show this is expected: in fully developed Langmuir turbulence,
+the primary LC cell width scales with wave wavelength (d_LC ~ 0.34 lambda_p
+~ 3.7 m at Neagh), not with the CL instability wavelength. The wave-tied
+scale coarsens through Y-junction mergers to reach 30-120 m over typical
+pattern lifetimes (5-60 min), naturally matching manual, stream, and wiggle
+observation ranges. The CL onset scale represents the full-depth roll
+organization detected by wiggle spectral methods.
+
+**New assumptions:** AR-036 (C_wave=0.34), AR-037 (wave-tied initiation),
+AR-038 (CL onset as full-depth roll diagnostic).
+
+**Reversible?** Yes. The multiscale candidate is additive; removing it
+requires deleting two new files and reverting the pipeline dispatch.
+
+---
+
 ## 2026-03-21 — WP-04b nonlinear solver benchmark bridge
 
 **Decision:** Use the published H&P (2017) §7.2 κ benchmarks directly for the
